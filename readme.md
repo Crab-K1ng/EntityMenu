@@ -1,6 +1,6 @@
 <img align="left" width="80" height="80" src="https://github.com/Crab-K1ng/EntityTest/blob/master/src/main/resources/assets/entity_test/icon.png" alt="icon">
 
-# Entity Test 
+# EntityMenu 
 
 Mod for game Cosmic Reach.\
 Based on the example mod for the [Cosmic Quilt](https://codeberg.org/CRModders/cosmic-quilt) Loader
