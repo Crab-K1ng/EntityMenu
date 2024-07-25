@@ -1,4 +1,3 @@
-<img align="left" width="80" height="80" src="https://github.com/Crab-K1ng/EntityTest/blob/master/src/main/resources/assets/entity_test/icon.png" alt="icon">
 
 # EntityMenu 
 
