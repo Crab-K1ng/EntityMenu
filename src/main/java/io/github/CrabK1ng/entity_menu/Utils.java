@@ -2,12 +2,26 @@ package io.github.CrabK1ng.entity_menu;
 
 import finalforeach.cosmicreach.entities.Entity;
 import finalforeach.cosmicreach.entities.EntityCreator;
+import finalforeach.cosmicreach.gamestates.GameState;
 import finalforeach.cosmicreach.gamestates.InGame;
+import finalforeach.cosmicreach.ui.UIElement;
 import finalforeach.cosmicreach.world.Zone;
 
 import static finalforeach.cosmicreach.gamestates.InGame.world;
 
 public class Utils {
+
+    public static UIElement getModButton(GameState parent) {
+        UIElement MobMenuButton = new UIElement(-210.0F, 100.0F, 150.0F, 50.0F) {
+            public void onClick() {
+                super.onClick();
+                GameState.switchToGameState(new MobMenu(parent,false));
+            }
+        };
+        MobMenuButton.show();
+        MobMenuButton.setText("MobMenu");
+        return MobMenuButton;
+    }
 
     public static void SpawnMob(String MobID){
         String mobToSpawnId = MobID;
@@ -15,5 +29,10 @@ public class Utils {
         mob.setPosition(InGame.getLocalPlayer().getEntity().getPosition());
         Zone zone = InGame.getLocalPlayer().getZone(world);
         zone.allEntities.add(mob);
+    }
+
+
+    public static boolean MobMenuPressed() {
+        return EntityMenu.MenuKeybind.isJustPressed();
     }
 }

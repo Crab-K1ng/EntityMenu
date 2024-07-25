@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import finalforeach.cosmicreach.TickRunner;
 import finalforeach.cosmicreach.gamestates.*;
 import finalforeach.cosmicreach.ui.UI;
-import io.github.CrabK1ng.entity_menu.Controls;
 import io.github.CrabK1ng.entity_menu.MobMenu;
+import io.github.CrabK1ng.entity_menu.Utils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,7 +16,7 @@ import static finalforeach.cosmicreach.gamestates.GameState.currentGameState;
 public class UIMixin {
     @Inject(method = "render", at = @At("HEAD"))
     public void renderMixin(CallbackInfo info) {
-        if (Controls.MobMenuPressed()) {
+        if (Utils.MobMenuPressed()) {
             boolean cursorCatched = Gdx.input.isCursorCatched();
             Gdx.input.setCursorCatched(false);
             if (currentGameState instanceof MobMenu){
