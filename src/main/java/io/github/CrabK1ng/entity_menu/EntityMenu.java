@@ -2,7 +2,6 @@ package io.github.CrabK1ng.entity_menu;
 
 import dev.crmodders.cosmicquilt.api.entrypoint.ModInitializer;
 import finalforeach.cosmicreach.settings.Keybind;
-import io.github.CrabK1ng.entity_test.EntityTest;
 import org.quiltmc.loader.api.ModContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
