@@ -8,12 +8,17 @@ import finalforeach.cosmicreach.gamestates.PauseMenu;
 import finalforeach.cosmicreach.lang.Lang;
 import finalforeach.cosmicreach.ui.*;
 
+import static io.github.CrabK1ng.entity_menu.EntityMenu.*;
+import static io.github.CrabK1ng.entity_menu.Utils.transformString;
+
 public class MobMenu extends GameState {
    private final GameState parent;
+   private final boolean keybind;
 
    public MobMenu(GameState parent, boolean keybind) {
       this.parent = parent;
-      UIElement spawnDroneInterceptorButton = new UIElement(-137.0F, -200.0F, 250.0F, 50.0F) {
+      this.keybind = keybind;
+       UIElement spawnDroneInterceptorButton = new UIElement(-137.0F, -200.0F, 250.0F, 50.0F) {
          @Override
          public void onClick() {
             super.onClick();
@@ -52,18 +57,20 @@ public class MobMenu extends GameState {
       spawnEmptyButton.show();
       this.uiObjects.add(spawnEmptyButton);
 
+      ///////////////
       UIElement spawnEmpty2Button = new UIElement(-137.0F, -125.0F, 250.0F, 50.0F) {
          @Override
          public void onClick() {
             super.onClick();
             TickRunner.INSTANCE.continueTickThread();
             GameState.switchToGameState(GameState.IN_GAME);
-            Utils.SpawnMob("base:entity_drone_trap_interceptor");
+            Utils.SpawnMob(EntityMenu.MOD_ID);
          }
       };
       spawnEmpty2Button.setText("spawn Empty");
       spawnEmpty2Button.show();
       this.uiObjects.add(spawnEmpty2Button);
+      ////////////
 
       UIElement doneButton = new UIElement(0.0F, 200.0F, 250.0F, 50.0F) {
          @Override
@@ -93,7 +100,12 @@ public class MobMenu extends GameState {
    public void render() {
       super.render();
       if (Gdx.input.isKeyJustPressed(111)) {
-         this.returnToPrevious(false);
+         if (this.keybind){
+            TickRunner.INSTANCE.continueTickThread();
+            GameState.switchToGameState(GameState.IN_GAME);
+         }else {
+            this.returnToPrevious(false);
+         }
       }
 
       ScreenUtils.clear(0.145F, 0.078F, 0.153F, 1.0F, true);

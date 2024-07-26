@@ -35,4 +35,19 @@ public class Utils {
     public static boolean MobMenuPressed() {
         return EntityMenu.MenuKeybind.isJustPressed();
     }
+
+    public static String transformString(String input) {
+        String[] parts = input.split(":");
+        String lastPart = parts[parts.length - 1];
+        String[] subParts = lastPart.split("_");
+        StringBuilder result = new StringBuilder();
+        for (String subPart : subParts) {
+            if (!subPart.isEmpty()) {
+                result.append(Character.toUpperCase(subPart.charAt(0)))
+                        .append(subPart.substring(1))
+                        .append(" ");
+            }
+        }
+        return result.toString().trim();
+    }
 }
