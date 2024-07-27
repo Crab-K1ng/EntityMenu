@@ -1,7 +1,6 @@
 package io.github.CrabK1ng.entity_menu;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.ScreenUtils;
 import finalforeach.cosmicreach.TickRunner;
 import finalforeach.cosmicreach.gamestates.GameState;
@@ -15,7 +14,6 @@ public class MobMenu extends GameState {
    private final boolean keybind;
    int ix = 0;
    int iy = 0;
-//+ 0.5f
    private void addMobSpawnButton(String label, String MobID) {
       MobSpawnButton MobSpawnButton = new MobSpawnButton(
          label, MobID, 275.0F * ((float)this.iy - 1.0F + 0.5f), (float)(50 + 60 * this.ix), 250.0F, 50.0F
@@ -90,7 +88,6 @@ public class MobMenu extends GameState {
    }
 
    class MobSpawnButton extends UIElement {
-      InputProcessor inputProcessor;
       String MobID;
       String label;
 

@@ -10,7 +10,6 @@ import finalforeach.cosmicreach.world.Zone;
 import static finalforeach.cosmicreach.gamestates.InGame.world;
 
 public class Utils {
-
     public static UIElement getModButton(GameState parent) {
         UIElement MobMenuButton = new UIElement(-210.0F, 100.0F, 150.0F, 50.0F) {
             public void onClick() {
@@ -30,7 +29,6 @@ public class Utils {
         Zone zone = InGame.getLocalPlayer().getZone(world);
         zone.allEntities.add(mob);
     }
-
 
     public static boolean MobMenuPressed() {
         return EntityMenu.MenuKeybind.isJustPressed();
