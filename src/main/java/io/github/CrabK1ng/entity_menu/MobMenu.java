@@ -15,19 +15,24 @@ public class MobMenu extends GameState {
    private final boolean keybind;
    int ix = 0;
    int iy = 0;
-
+//+ 0.5f
    private void addMobSpawnButton(String label, String MobID) {
       MobSpawnButton MobSpawnButton = new MobSpawnButton(
-         label, MobID, 275.0F * ((float)this.iy - 1.0F), (float)(50 + 60 * this.ix), 250.0F, 50.0F
+         label, MobID, 275.0F * ((float)this.iy - 1.0F + 0.5f), (float)(50 + 60 * this.ix), 250.0F, 50.0F
       );
       MobSpawnButton.updateText();
       MobSpawnButton.vAnchor = VerticalAnchor.TOP_ALIGNED;
       MobSpawnButton.show();
       this.uiObjects.add(MobSpawnButton);
-      ++this.ix;
+
+      ++this.iy;
       if (this.ix > 6) {
          this.ix = 0;
          ++this.iy;
+      }
+      if (this.iy == 2) {
+         this.iy = 0;
+         ++this.ix;
       }
    }
 
