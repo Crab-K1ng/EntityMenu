@@ -22,7 +22,8 @@ public class UIMixin {
             if (currentGameState instanceof MobMenu){
                 TickRunner.INSTANCE.continueTickThread();
                 GameState.switchToGameState(GameState.IN_GAME);
-            }else {
+            }
+            else {
                 GameState.switchToGameState(new PauseMenu(cursorCatched));
                 GameState.switchToGameState(new MobMenu(currentGameState, true));
             }

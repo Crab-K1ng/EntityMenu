@@ -1,84 +1,49 @@
 package io.github.CrabK1ng.entity_menu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.ScreenUtils;
 import finalforeach.cosmicreach.TickRunner;
 import finalforeach.cosmicreach.gamestates.GameState;
 import finalforeach.cosmicreach.gamestates.PauseMenu;
 import finalforeach.cosmicreach.lang.Lang;
-import finalforeach.cosmicreach.ui.*;
-
-import static io.github.CrabK1ng.entity_menu.EntityMenu.*;
-import static io.github.CrabK1ng.entity_menu.Utils.transformString;
+import finalforeach.cosmicreach.ui.UIElement;
+import finalforeach.cosmicreach.ui.VerticalAnchor;
 
 public class MobMenu extends GameState {
    private final GameState parent;
    private final boolean keybind;
+   int ix = 0;
+   int iy = 0;
 
-   public MobMenu(GameState parent, boolean keybind) {
+   private void addMobSpawnButton(String label, String MobID) {
+      MobSpawnButton MobSpawnButton = new MobSpawnButton(
+         label, MobID, 275.0F * ((float)this.iy - 1.0F), (float)(50 + 60 * this.ix), 250.0F, 50.0F
+      );
+      MobSpawnButton.updateText();
+      MobSpawnButton.vAnchor = VerticalAnchor.TOP_ALIGNED;
+      MobSpawnButton.show();
+      this.uiObjects.add(MobSpawnButton);
+      ++this.ix;
+      if (this.ix > 6) {
+         this.ix = 0;
+         ++this.iy;
+      }
+   }
+
+   public MobMenu(final GameState parent, boolean keybind) {
       this.parent = parent;
       this.keybind = keybind;
-       UIElement spawnDroneInterceptorButton = new UIElement(-137.0F, -200.0F, 250.0F, 50.0F) {
+      this.addMobSpawnButton("Drone Interceptor", "base:entity_drone_interceptor");
+      this.addMobSpawnButton("Drone Trap Interceptor", "base:entity_drone_trap_interceptor");
+      UIElement doneButton = new UIElement(0.0F, -50.0F, 250.0F, 50.0F) {
          @Override
          public void onClick() {
             super.onClick();
-            TickRunner.INSTANCE.continueTickThread();
-            GameState.switchToGameState(GameState.IN_GAME);
-            Utils.SpawnMob("base:entity_drone_interceptor");
+            returnToPrevious(keybind);
          }
       };
-      spawnDroneInterceptorButton.setText("spawn Drone Interceptor");
-      spawnDroneInterceptorButton.show();
-      this.uiObjects.add(spawnDroneInterceptorButton);
-
-      UIElement spawnDroneTrapButton = new UIElement(137.0F, -200.0F, 250.0F, 50.0F) {
-         @Override
-         public void onClick() {
-            super.onClick();
-            TickRunner.INSTANCE.continueTickThread();
-            GameState.switchToGameState(GameState.IN_GAME);
-            Utils.SpawnMob("base:entity_drone_trap_interceptor");
-         }
-      };
-      spawnDroneTrapButton.setText("spawn Drone Trap");
-      spawnDroneTrapButton.show();
-      this.uiObjects.add(spawnDroneTrapButton);
-
-      UIElement spawnEmptyButton = new UIElement(137.0F, -125.0F, 250.0F, 50.0F) {
-         @Override
-         public void onClick() {
-            super.onClick();
-            TickRunner.INSTANCE.continueTickThread();
-            GameState.switchToGameState(GameState.IN_GAME);
-            Utils.SpawnMob("base:entity_drone_trap_interceptor");
-         }
-      };
-      spawnEmptyButton.setText("spawn Empty");
-      spawnEmptyButton.show();
-      this.uiObjects.add(spawnEmptyButton);
-
-      ///////////////
-      UIElement spawnEmpty2Button = new UIElement(-137.0F, -125.0F, 250.0F, 50.0F) {
-         @Override
-         public void onClick() {
-            super.onClick();
-            TickRunner.INSTANCE.continueTickThread();
-            GameState.switchToGameState(GameState.IN_GAME);
-            Utils.SpawnMob(EntityMenu.MOD_ID);
-         }
-      };
-      spawnEmpty2Button.setText("spawn Empty");
-      spawnEmpty2Button.show();
-      this.uiObjects.add(spawnEmpty2Button);
-      ////////////
-
-      UIElement doneButton = new UIElement(0.0F, 200.0F, 250.0F, 50.0F) {
-         @Override
-         public void onClick() {
-            super.onClick();
-            MobMenu.this.returnToPrevious(keybind);
-         }
-      };
+      doneButton.vAnchor = VerticalAnchor.BOTTOM_ALIGNED;
       doneButton.setText(Lang.get("doneButton"));
       doneButton.show();
       this.uiObjects.add(doneButton);
@@ -117,5 +82,30 @@ public class MobMenu extends GameState {
       Gdx.gl.glBlendFunc(770, 771);
       IN_GAME.render();
       this.drawUIElements();
+   }
+
+   class MobSpawnButton extends UIElement {
+      InputProcessor inputProcessor;
+      String MobID;
+      String label;
+
+      public MobSpawnButton(String label , String MobID, float x, float y, float w, float h) {
+         super(x, y, w, h);
+         this.MobID = MobID;
+         this.label = label;
+      }
+
+      @Override
+      public void onClick() {
+         super.onClick();
+         TickRunner.INSTANCE.continueTickThread();
+         GameState.switchToGameState(GameState.IN_GAME);
+         Utils.SpawnMob(this.MobID);
+      }
+
+      @Override
+      public void updateText() {
+         this.setText(this.label + " ");
+      }
    }
 }
