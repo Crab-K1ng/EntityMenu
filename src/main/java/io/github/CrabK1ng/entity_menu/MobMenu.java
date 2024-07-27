@@ -39,6 +39,12 @@ public class MobMenu extends GameState {
       this.keybind = keybind;
       this.addMobSpawnButton("Drone Interceptor", "base:entity_drone_interceptor");
       this.addMobSpawnButton("Drone Trap Interceptor", "base:entity_drone_trap_interceptor");
+
+      // Add custom buttons
+      for (MobMenuRegistry.MobButtonInfo buttonInfo : MobMenuRegistry.getMobButtons()) {
+         this.addMobSpawnButton(buttonInfo.label, buttonInfo.mobID);
+      }
+
       UIElement doneButton = new UIElement(0.0F, -50.0F, 250.0F, 50.0F) {
          @Override
          public void onClick() {
