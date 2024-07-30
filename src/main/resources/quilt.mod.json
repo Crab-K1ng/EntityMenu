@@ -10,15 +10,15 @@
 
     "metadata": {
       "name": "${mod_name}",
-      "description": "to add a menu to my EntityTest mod",
+      "description": "adds a menu to Spawn mods",
       "contributors": {
         "crabking": "Owner"
       },
 
       "contact": {
-        "homepage": "https://github.com/Crab-K1ng/EntityTest",
-        "issues": "https://github.com/Crab-K1ng/EntityTest/issues",
-        "sources": "https://github.com/Crab-K1ng/EntityTest"
+        "homepage": "https://github.com/Crab-K1ng/EntityMenu",
+        "issues": "https://github.com/Crab-K1ng/EntityMenu/issues",
+        "sources": "https://github.com/Crab-K1ng/EntityMenu"
       },
 
       "icon": "assets/entity_menu/icon.png"
