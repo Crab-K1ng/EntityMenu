@@ -6,7 +6,7 @@ plugins {
 repositories {
     ivy {
         name "Cosmic Reach"
-        url "https://github.com/CRModders/CosmicArchive/raw/main/"
+        url "https://github.com/CRModders/CosmicArchive/raw/main/versions/pre-alpha"
         patternLayout {
             artifact "/Cosmic Reach-[revision].jar"
         }
@@ -64,7 +64,7 @@ configurations {
 
 dependencies {
     // Cosmic Reach jar
-    cosmicreach "finalforeach:cosmicreach:${cosmic_reach_version}"
+    cosmicreach "finalforeach:pre-alpha:${cosmic_reach_version}"
 
     // Cosmic Quilt
     internal "dev.crmodders:cosmicquilt:${cosmic_quilt_version}"
